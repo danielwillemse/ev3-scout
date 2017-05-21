@@ -19,6 +19,13 @@ defmodule NervesEv3Example do
       worker(NervesEv3Example.Display, []),
     ]
 
+    children =
+      if Ev3.config[:boot_devices] do
+        [supervisor(Ev3.DeviceSupervisor, [strategy: :one_for_one])]
+      else
+        []
+      end
+
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesEv3Example.Supervisor]
