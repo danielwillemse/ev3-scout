@@ -4,7 +4,7 @@ defmodule NervesEv3Example.Mixfile do
 @system "nerves_system_ev3"
 
   def project do
-    [app: :nerves_ev3_example,
+    [app: :scout,
      version: "0.2.0",
      elixir: "~> 1.3",
      archives: [nerves_bootstrap: "~> 0.2"],

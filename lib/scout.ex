@@ -26,7 +26,7 @@ defmodule NervesEv3Example do
   end
 
   defp load_ev3_modules() do
-    wifi_driver = Application.get_env(:nerves_ev3_example, :wifi_driver)
+    wifi_driver = Application.get_env(:scout, :wifi_driver)
     System.cmd("modprobe", [wifi_driver])
 
     System.cmd("/sbin/udevd", ["--daemon"])
@@ -45,7 +45,7 @@ defmodule NervesEv3Example do
   end
 
   defp start_wifi() do
-    opts = Application.get_env(:nerves_ev3_example, :wlan0)
+    opts = Application.get_env(:scout, :wlan0)
     Nerves.InterimWiFi.setup "wlan0", opts
   end
 

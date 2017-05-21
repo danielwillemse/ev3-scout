@@ -31,12 +31,12 @@ config :nerves_interim_wifi,
 # above driver names. If you don't see one of these, you'll
 # need to build a custom Nerves system image with the
 # correct driver module enabled.
-config :nerves_ev3_example,
+config :scout,
   wifi_driver: "mt7601u"
   #wifi_driver: "rt2800usb"
 
 import_config "secrets.exs"
-# config :nerves_ev3_example, :wlan0,
+# config :scout, :wlan0,
 #   ssid: "my_access_point",
 #   key_mgmt: :"WPA-PSK",
 #   psk: "secretsecret"

@@ -14,11 +14,11 @@ use Mix.Releases.Config,
 # and environment configuration is called a profile
 
 environment :dev do
-  set cookie: :"z$U%^1DqRcCL*Va7a,}5.={6gW|A9bT]xU}lKE8Ed1.^!!:Vg|OL1|FD|BtecNA]"
+  set cookie: :"qL*b$(7QFc^%pl0_v?E=6!HJim9O1>p*o3C$m9gilDLEyvE/I(A3EL!K3lyOt&SQ"
 end
 
 environment :prod do
-  set cookie: :"z$U%^1DqRcCL*Va7a,}5.={6gW|A9bT]xU}lKE8Ed1.^!!:Vg|OL1|FD|BtecNA]"
+  set cookie: :"qL*b$(7QFc^%pl0_v?E=6!HJim9O1>p*o3C$m9gilDLEyvE/I(A3EL!K3lyOt&SQ"
 end
 
 # You may define one or more releases in this file.
@@ -26,8 +26,8 @@ end
 # when running `mix release`, the first release in the file
 # will be used by default
 
-release :nerves_ev3_example do
-  set version: current_version(:nerves_ev3_example)
+release :scout do
+  set version: current_version(:scout)
   if System.get_env("NERVES_SYSTEM") do
     set dev_mode: false
     set include_src: false

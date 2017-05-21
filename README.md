@@ -31,4 +31,4 @@ If you have a console adapter and want to do some debugging with this project,
 you'll need to do two things. The first is to switch the TTY to `ttyS1` in
 `config/rootfs-additions/etc/erlinit.config`. The second is to comment out the
 `NervesEv3Example.Display` worker so that it doesn't start in
-`lib/nerves_ev3_example.ex`.
+`lib/scout.ex`.
