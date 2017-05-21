@@ -6,6 +6,7 @@
 
 # Nerves images
 /_images
+config/secrets.exs
 
 # Generate on crash by the VM
 erl_crash.dump

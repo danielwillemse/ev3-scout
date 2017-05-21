@@ -13,12 +13,6 @@ config :nerves, :firmware,
 config :nerves_interim_wifi,
   regulatory_domain: "US"
 
-# Change these options for your AP
-config :nerves_ev3_example, :wlan0,
-  ssid: "my_access_point",
-  key_mgmt: :"WPA-PSK",
-  psk: "secretsecret"
-
 # Change this to your WiFi module's driver name.
 # Examples are:
 #    "mt7601u" for a MediaTek MT7601u (Tenda WM311MI)
@@ -40,3 +34,9 @@ config :nerves_ev3_example, :wlan0,
 config :nerves_ev3_example,
   wifi_driver: "mt7601u"
   #wifi_driver: "rt2800usb"
+
+import_config "secrets.exs"
+# config :nerves_ev3_example, :wlan0,
+#   ssid: "my_access_point",
+#   key_mgmt: :"WPA-PSK",
+#   psk: "secretsecret"
