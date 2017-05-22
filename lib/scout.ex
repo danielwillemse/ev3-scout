@@ -6,10 +6,9 @@ defmodule NervesEv3Example do
   def start(_type, _args) do
     import Supervisor.Spec
 
+    #
     # Initialize
-    load_ev3_modules()
-    start_writable_fs()
-    start_wifi()
+    load_ev3!()
 
     # This won't get annoying...
     spawn fn -> System.cmd("espeak", ["Good morning!"]) end
@@ -17,19 +16,19 @@ defmodule NervesEv3Example do
     # Define workers and child supervisors to be supervised
     children = [
       worker(NervesEv3Example.Display, []),
+      supervisor(Ev3.DeviceSupervisor, [strategy: :one_for_one])
     ]
-
-    children =
-      if Ev3.config[:boot_devices] do
-        [supervisor(Ev3.DeviceSupervisor, [strategy: :one_for_one])]
-      else
-        []
-      end
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesEv3Example.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  defp load_ev3!() do
+    load_ev3_modules()
+    start_writable_fs()
+    start_wifi()
   end
 
   defp load_ev3_modules() do
