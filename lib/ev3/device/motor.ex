@@ -6,7 +6,7 @@ defmodule Ev3.Device.Motor do
   @device_path "tacho-motor"
   @valid_calls ~w(speed_sp command)a
 
-  defstruct [:device, :type, :path, :status]
+  defstruct [:type, :path, :status]
 
   ### API ###
 
