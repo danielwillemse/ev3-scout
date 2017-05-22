@@ -1,7 +1,7 @@
 defmodule NervesEv3Example.Mixfile do
   use Mix.Project
 
-@system "nerves_system_ev3"
+  @system "nerves_system_ev3"
 
   def project do
     [app: :scout,
