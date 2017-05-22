@@ -13,10 +13,6 @@ config :nerves, :firmware,
 config :nerves_interim_wifi,
   regulatory_domain: "US"
 
-config :ev3,
-  base_path: "/sys/class",
-  boot_devices: true
-
 # Change this to your WiFi module's driver name.
 # Examples are:
 #    "mt7601u" for a MediaTek MT7601u (Tenda WM311MI)
@@ -39,6 +35,13 @@ config :scout,
   wifi_driver: "mt7601u"
   #wifi_driver: "rt2800usb"
 
+config :scout, :ev3,
+  root_path: "/sys/class",
+  load_modules: true,
+  load_display: true,
+  load_devices: true
+
+import_config "#{Mix.env}.exs"
 import_config "secrets.exs"
 # config :scout, :wlan0,
 #   ssid: "my_access_point",

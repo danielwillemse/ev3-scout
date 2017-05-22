@@ -1,28 +1,35 @@
 defmodule NervesEv3Example do
   use Application
+  import Supervisor.Spec
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
   def start(_type, _args) do
-    import Supervisor.Spec
+    if Ev3.load_modules? do
+      load_ev3!()
+      spawn fn -> System.cmd("espeak", ["Scout reporting for duty"]) end
+    end
 
-    #
-    # Initialize
-    load_ev3!()
+    children = [] |> add_device_workers() |> add_display_workers()
 
-    # This won't get annoying...
-    spawn fn -> System.cmd("espeak", ["Good morning!"]) end
-
-    # Define workers and child supervisors to be supervised
-    children = [
-      worker(NervesEv3Example.Display, []),
-      supervisor(Ev3.DeviceSupervisor, [strategy: :one_for_one])
-    ]
-
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesEv3Example.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  def add_device_workers(children) do
+    if Ev3.load_devices?() do
+      [supervisor(Ev3.DeviceSupervisor, [strategy: :one_for_one]) | children]
+    else
+      children
+    end
+  end
+
+  def add_display_workers(children) do
+    if Ev3.load_display? do
+      [worker(NervesEv3Example.Display, []) | children]
+    else
+      children
+    end
   end
 
   defp load_ev3!() do
